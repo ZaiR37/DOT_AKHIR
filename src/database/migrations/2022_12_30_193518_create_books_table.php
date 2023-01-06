@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string("ukuran_buku",50);
             $table->string("sinopsis",1000);
             $table->string("image_link",500);
-            $table->string("status",100);
-            $table->string("id_peminjam",10);
+            $table->boolean('status')->default(true);
+            $table->string("id_peminjam",10)->nullable();
             $table->timestamps();
         });
     }

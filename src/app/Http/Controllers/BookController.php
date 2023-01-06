@@ -66,8 +66,8 @@ class BookController extends Controller
     public function show_kategori($nama_kategori)
     {
         //
-        // $trans = DB::connection('mysql')->select('kategori')->table('books')->where('id', $id)->first();
-        $trans = DB::select('SELECT * FROM books WHERE kategori = ?', [$nama_kategori]);
+        // $trans = DB::select('SELECT * FROM books WHERE kategori = ?', [$nama_kategori]);
+        $trans = DB::connection('mysql')->table('books')->where('kategori', $nama_kategori)->get();
         return response()->json($trans);
     }
 
@@ -98,6 +98,14 @@ class BookController extends Controller
         //
         $trans = DB::connection('mysql')->table('books')->where('id', $id)->delete();
         return response()->json("Berhasil hapus data buku!",200);
+    }
+
+    public function detail(){
+        $id = 1;
+        $test = "Tersedia";
+        $book = DB::connection('mysql')->table('books')->where('id', $id)->get('status');
+        if($book[0]->status == 0) $test = "Tidak tersedia";
+        return response()->json($test, 200);
     }
 
 }

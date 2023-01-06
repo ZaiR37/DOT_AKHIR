@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\log_peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class LogPeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,11 @@ class UserController extends Controller
     public function index()
     {
         //
-        $query = DB::connection('mysql2')->table('users')->get();
+        $query = DB::connection('mysql3')->table('log_peminjaman')->get();
         return response()->json($query, 200);
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -31,39 +32,37 @@ class UserController extends Controller
         //
         $timestamp = \Carbon\Carbon::now()->toDateTimeString();
         $this->validate($request, [
-            'nim' => 'required',
-            'nama' => 'required',
-            'jurusan' => 'required',
-            'fakultas' => 'required',
-            'alamat' => 'required',
-            'no_telepon' => 'required',
+            'id_buku' => 'required',
+            'id_peminjam' => 'required',
+            'status' => 'required',
         ]);
 
         $request['created_at'] = $timestamp;
         $request['updated_at'] = $timestamp;
 
-        $trans = DB::connection('mysql2')->table('users')->insert($request->all());
-        return response()->json("Berhasil menambahkan user baru!");
+        $trans = DB::connection('mysql3')->table('log_peminjaman')->insert($request->all());
+        return response()->json("Berhasil menambahkan log!");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\log_peminjaman  $log_peminjaman
      * @return \Illuminate\Http\Response
      */
     public function show_id($id)
     {
         //
-        $trans = DB::connection('mysql2')->table('users')->where('id', $id)->first();
+        $trans = DB::connection('mysql3')->table('log_peminjaman')->where('id', $id)->first();
         return response()->json($trans);
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\log_peminjaman  $log_peminjaman
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -71,20 +70,20 @@ class UserController extends Controller
         //
         $timestamp = \Carbon\Carbon::now()->toDateTimeString();
         $request['updated_at'] = $timestamp;
-        $trans = DB::connection('mysql2')->table('users')->where('id', $id)->update($request->all());
-        return response()->json("Berhasil mengupdate data user!",200);
+        $trans = DB::connection('mysql3')->table('log_peminjaman')->where('id', $id)->update($request->all());
+        return response()->json("Berhasil mengupdate log!",200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\log_peminjaman  $log_peminjaman
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $trans = DB::connection('mysql2')->table('users')->where('id', $id)->delete();
-        return response()->json("Berhasil hapus data user!",200);
+        $trans = DB::connection('mysql3')->table('log_peminjaman')->where('id', $id)->delete();
+        return response()->json("Berhasil hapus log!",200);
     }
 }
