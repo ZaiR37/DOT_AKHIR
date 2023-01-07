@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('log_peminjaman', function (Blueprint $table) {
+        Schema::connection('db_history')->create('log_peminjaman', function (Blueprint $table) {
             $table->id();
             $table->integer("id_buku");
             $table->integer("id_peminjam");

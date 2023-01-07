@@ -20,7 +20,6 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api/v1/books'], function() use ($router){
     $router->get('/', ['uses' => 'BookController@index']);
     $router->get('/kategori/{nama_kategori}', ['uses' => 'BookController@show_kategori']);
-    $router->get('/detail', ['uses' => 'BookController@detail']);
 	$router->post('/', ['uses' => 'BookController@store']);
 	$router->get('/{id}', ['uses' => 'BookController@show_id']);
 	$router->delete('/{id}', ['uses' => 'BookController@destroy']);
@@ -29,7 +28,6 @@ $router->group(['prefix' => 'api/v1/books'], function() use ($router){
 
 $router->group(['prefix' => 'api/v1/users'], function() use ($router){
     $router->get('/', ['uses' => 'UserController@index']);
-    $router->get('/detail', ['uses' => 'UserController@detail']);
 	$router->get('/{id}', ['uses' => 'UserController@show_id']);
 	$router->post('/', ['uses' => 'UserController@store']);
 	$router->put('/{id}', ['uses' => 'UserController@update']);
@@ -38,8 +36,10 @@ $router->group(['prefix' => 'api/v1/users'], function() use ($router){
 
 $router->group(['prefix' => 'api/v1/history'], function() use ($router){
     $router->get('/', ['uses' => 'LogPeminjamanController@index']);
-	$router->get('/{id}', ['uses' => 'LogPeminjamanController@show_id']);
 	$router->post('/', ['uses' => 'LogPeminjamanController@store']);
+    $router->get('/detail', ['uses' => 'LogPeminjamanController@detail']);
+    $router->get('/detail/{id}', ['uses' => 'LogPeminjamanController@detail_id']);
+	$router->get('/{id}', ['uses' => 'LogPeminjamanController@show_id']);
 	$router->put('/{id}', ['uses' => 'LogPeminjamanController@update']);
 	$router->delete('/{id}', ['uses' => 'LogPeminjamanController@destroy']);
 });

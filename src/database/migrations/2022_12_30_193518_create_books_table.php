@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('books', function (Blueprint $table) {
+        Schema::connection('db_book')->create('books', function (Blueprint $table) {
             $table->id();
             $table->string("judul",100);
             $table->string("kategori",100);
