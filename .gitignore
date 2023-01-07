@@ -1,4 +1,1 @@
 .env
-db_books/*
-db_history/*
-db_users/*
