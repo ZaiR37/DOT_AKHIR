@@ -41,38 +41,3 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
 
-  dot_db2:
-    image: mariadb:10.2
-    container_name: mysql_dot2
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - ./db_users:/var/lib/mysql
-      - ./conf.d:/etc/mysql2/conf.d:ro
-    environment:
-      MYSQL_USER: djambred
-      MYSQL_PASSWORD: p455w0rd1!.
-      MYSQL_ROOT_PASSWORD: p455w0rd
-      TZ: Asia/Jakarta
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    ports:
-      - "33307:3306"
-
-  dot_db3:
-    image: mariadb:10.2
-    container_name: mysql_dot3
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - ./db_history:/var/lib/mysql
-      - ./conf.d:/etc/mysql2/conf.d:ro
-    environment:
-      MYSQL_USER: djambred
-      MYSQL_PASSWORD: p455w0rd1!.
-      MYSQL_ROOT_PASSWORD: p455w0rd
-      TZ: Asia/Jakarta
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    ports:
-      - "33308:3306"
