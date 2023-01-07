@@ -99,14 +99,4 @@ class BookController extends Controller
         $trans = DB::connection('db_book')->table('books')->where('id', $id)->delete();
         return response()->json("Berhasil hapus data buku!",200);
     }
-
-    public function detail(){
-        $id = 1;
-        $book = DB::connection('db_book')->table('books')->where('id', $id)->get();
-        if($book[0]->status == 0){
-            $test = DB::connection('db_user')->table('users')->where('id', $book[0]->id_peminjam)->get();
-        }
-        return response()->json("awedwa", 200);
-    }
-
 }

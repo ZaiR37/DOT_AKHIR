@@ -114,7 +114,6 @@ class LogPeminjamanController extends Controller
                         'peminjaman_table.created_at AS tanggal'
 						)
             ->where('peminjaman_table.id','=',$id)
-            ->orderBy('id')
 			->get();
 
 		return response()->json($data);
