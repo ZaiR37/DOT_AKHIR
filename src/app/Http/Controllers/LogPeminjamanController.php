@@ -57,7 +57,6 @@ class LogPeminjamanController extends Controller
         return response()->json($trans);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
