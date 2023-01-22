@@ -19,8 +19,8 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api/v1/books'], function() use ($router){
     $router->get('/', ['uses' => 'BookController@index']);
-    $router->get('/kategori/{nama_kategori}', ['uses' => 'BookController@show_kategori']);
 	$router->post('/', ['uses' => 'BookController@store']);
+    $router->get('/kategori/{nama_kategori}', ['uses' => 'BookController@show_kategori']);
 	$router->get('/{id}', ['uses' => 'BookController@show_id']);
 	$router->delete('/{id}', ['uses' => 'BookController@destroy']);
 	$router->put('/{id}', ['uses' => 'BookController@update']);
@@ -28,8 +28,8 @@ $router->group(['prefix' => 'api/v1/books'], function() use ($router){
 
 $router->group(['prefix' => 'api/v1/users'], function() use ($router){
     $router->get('/', ['uses' => 'UserController@index']);
-	$router->get('/{id}', ['uses' => 'UserController@show_id']);
 	$router->post('/', ['uses' => 'UserController@store']);
+	$router->get('/{id}', ['uses' => 'UserController@show_id']);
 	$router->put('/{id}', ['uses' => 'UserController@update']);
 	$router->delete('/{id}', ['uses' => 'UserController@destroy']);
 });
